@@ -11,3 +11,12 @@ factorial n = n * factorial (n-1)
 
 main = hello
 
+motion x v delta =
+	x + v * delta;
+
+forcefield :: Double -> Double
+forcefield r = r^(-14)-r^(-7)
+
+potential :: Particles -> Double
+potential particles = sum forcefield 
+
