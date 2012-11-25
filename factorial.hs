@@ -17,6 +17,10 @@ motion x v delta =
 forcefield :: Double -> Double
 forcefield r = r^(-14)-r^(-7)
 
+class Particles a where
+	union :: a
+
+
 potential :: Particles -> Double
 potential particles = sum forcefield 
 
