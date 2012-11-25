@@ -9,7 +9,7 @@
 double ax[N]; double ay[N];
 double vx[N]; double vy[N];
 double x[N]; double y[N];
-double cutRad=0.5;
+double cutRad=0.2;
 double epsilon=1.0;
 double sigma=0.1;
 int i,j,k; // for use in loops
@@ -34,10 +34,14 @@ inline double force ( double r ) {
 
 bool isNear(int i, int j)
 {
-	if (i==j) return false;
+	if (i==j) {
+		return false;
+	}
 	if ( range(i,j) < cutRad ) {
-	return true; }
-	else { return false; }
+		return true;
+	} else {
+		return false;
+	}
 }
 
 int init()
@@ -93,9 +97,9 @@ int correct()
 
 int printout()
 {
-	for(i=0;i<5;i++) {
-		printf("x[%d]= %f ",i,x[i]);
-	}
+	for(i=5;i<10;i++) { printf("x[%d]= %f ",i,x[i]); }; printf("\n");
+	for(i=5;i<10;i++) { printf("y[%d]= %f ",i,y[i]); }; printf("\n");
+
 	printf("\n");
 	return 0;
 }
