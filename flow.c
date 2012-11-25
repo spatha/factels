@@ -60,8 +60,8 @@ int domove()
 		for(j=0; j<N; j++) {
 			if (isNear(i,j)) {
 				r = range(i,j);
-				Fx += force(r) * (x[i]-x[j])/range(i,j);
-				Fy += force(r) * (y[i]-y[j])/range(i,j);
+				Fx += force(r) * (x[i]-x[j])/r;
+				Fy += force(r) * (y[i]-y[j])/r;
 				
 			}
 		}
@@ -103,7 +103,7 @@ int main()
 {
 	init();
 	int iter=0;
-	for(iter=0;iter<100;iter++) {
+	for(iter=0;iter<10;iter++) {
 		domove();
 		printout();
 	}
