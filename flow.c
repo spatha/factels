@@ -6,10 +6,14 @@
 #define N 20
 
 
-double acc[N]; double vel[N]; double x[N]; double y[N];
+double ax[N]; double ay[N];
+double vx[N]; double vy[N];
+double x[N]; double y[N];
 double cutRad=0.5;
 double epsilon=1.0;
 int i,j,k; // for use in loops
+double dt=0.01;
+
 
 inline double sqr ( double x ) {
 	return x * x;
@@ -44,15 +48,22 @@ int init()
 
 int domove()
 {
-	double U;
-	double r;
+	double U=0;
+	double r=1;
 	for(i=0; i<N; i++) {
 		for(j=0; j<N; j++) {
 			if (isNear(i,j)) {
 				r = range(i,j);
 				U += field(r);
+				
 			}
 		}
+		x[i]+=dt*vx[i];
+		y[i]+=dt*vy[i];
+		vx[i]+=dt*ax[i];
+		vy[i]+=dt*ay[i];
+		ax[i]= DUx;
+		ay[i]= DUy;
 	}
 	return 0;
 }
