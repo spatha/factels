@@ -75,6 +75,21 @@ int domove()
 	return 0;
 }
 
+int correct()
+{
+	for(i=0;i<N;i++) {
+		if (x[i]>1)
+			x[i]--;
+		if (x[i]<0)
+			x[i]++;
+		if (y[i]>1)
+			y[i]--;
+		if (y[i]<0)
+			y[i]++;
+	}
+	return 0;
+}
+
 int main()
 {
 	init();
