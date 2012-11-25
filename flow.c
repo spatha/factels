@@ -90,9 +90,23 @@ int correct()
 	return 0;
 }
 
+int printout()
+{
+	for(i=0;i<5;i++) {
+		printf("x[%d]= %f ",i,x[i]);
+	}
+	printf("\n");
+	return 0;
+}
+
 int main()
 {
 	init();
+	int iter=0;
+	for(iter=0;iter<100;iter++) {
+		domove();
+		printout();
+	}
 	return 0;
 }
 
