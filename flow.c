@@ -9,10 +9,14 @@
 double acc[N]; double vel[N]; double x[N]; double y[N];
 double cutRad=0.5;
 double epsilon=1.0;
-
+int i,j,k; // for use in loops
 
 inline double sqr ( double x ) {
 	return x * x;
+}
+
+inline range( int i, int j ) {
+	return sqrt( sqr(x[i]-x[j]) + sqr(y[i]-y[j])  );
 }
 
 inline double field ( double r ) {
@@ -21,14 +25,13 @@ inline double field ( double r ) {
 
 bool isNear(int i, int j)
 {
-	if ( sqr(x[i]-x[j]) + sqr(y[i]-y[j]) < sqr(cutRad) ) {
+	if ( range(i,j) < cutRad ) {
 	return true; }
 	else { return false; }
 }
 
 int init()
 {
-	int i;
 	for(i=0;i<N;i++) {
 		acc[i]=0;
 		vel[i]=0;
@@ -41,7 +44,16 @@ int init()
 
 int domove()
 {
-
+	double U;
+	double r;
+	for(i=0; i<N; i++) {
+		for(j=0; j<N; j++) {
+			if (isNear(i,j)) {
+				r = range(i,j);
+				U += field(r);
+			}
+		}
+	}
 	return 0;
 }
 
