@@ -11,6 +11,7 @@ double vx[N]; double vy[N];
 double x[N]; double y[N];
 double cutRad=0.5;
 double epsilon=1.0;
+double sigma=0.1;
 int i,j,k; // for use in loops
 double dt=0.01;
 
@@ -24,15 +25,16 @@ inline range( int i, int j ) {
 }
 
 inline double field ( double r ) {
-	return epsilon * ( pow(r,-14) - pow(r,-7) );
+	return epsilon * ( pow(r/sigma,-14) - pow(r/sigma,-7) );
 }
 
 inline double force ( double r ) {
-	return epsilon * ( -14 * pow(r,-15) - (-7) * pow(r,-8) );
+	return epsilon * ( -14/sigma * pow(r/sigma,-15) - (-7)/sigma * pow(r/sigma,-8) );
 }
 
 bool isNear(int i, int j)
 {
+	if (i==j) return false;
 	if ( range(i,j) < cutRad ) {
 	return true; }
 	else { return false; }
@@ -46,8 +48,7 @@ int init()
 		vx[i]=0;
 		vy[i]=0;
 		x[i]=sqrt(i)/sqrt(N);
-		y[i]=1-sqr(i/N);
-//		ord[i]=rand()/double(RAND_MAX);
+		y[i]=( log(N)-log(i) )/log(N);
 	}
 	return 0;
 }
