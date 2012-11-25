@@ -6,4 +6,8 @@
 
 hello = putStrLn "Hello world!"
 
+factorial 1 = 1
+factorial n = n * factorial (n-1)
+
 main = hello
+
