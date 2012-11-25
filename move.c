@@ -3,10 +3,10 @@
 
 #define N 20
 
-typedef particles * Particles;
+typedef struct particles *Particles;
 
 struct particles {
-	double * r[N];
+	double (* rad)[N];
 	int n;
 };
 
@@ -20,9 +20,9 @@ Particles * create_particles()
 	return 0;
 }
 
-free_particles(struct particles * Particles)
+int free_particles( struct particles *P )
 {
-	free(Particles->r);
+	free(P->rad);
 	return 0;
 }
 
